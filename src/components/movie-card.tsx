@@ -9,7 +9,7 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ title, imdbRating, image }) => {
     return (
-        <div className="border border-gray-300 rounded-lg w-64 overflow-hidden text-center mb-5 shadow-md">
+        <div className="border-0 border-gray-300 rounded-lg w-64 overflow-hidden text-center mb-5 bg-secondary ">
             <img src={image} />
             <div className="p-2">
                 <div className="flex items-center gap-x-1">
