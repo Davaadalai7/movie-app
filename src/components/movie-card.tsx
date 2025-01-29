@@ -1,4 +1,4 @@
-import { StarIcon } from "lucide-react";
+import StarIcon  from "./imdb-star";
 import React from "react";
 
 interface MovieCardProps {

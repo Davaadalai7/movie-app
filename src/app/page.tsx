@@ -24,7 +24,7 @@ export function ModeToggle() {
     const { setTheme } = useTheme();
 
     return (
-        <div className="light:bg-white dark:bg-black">
+        <div className="bg-white dark:bg-black">
             <div className="flex justify-center w-full">
                 <div className="flex justify-between w-[1280] max-width-[1280px] h-[60] items-center">
                     <div>
