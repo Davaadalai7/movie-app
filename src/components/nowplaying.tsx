@@ -7,14 +7,16 @@ import {
     CarouselPrevious,
 } from "./ui/carousel";
 import React, { useEffect, useState } from "react";
-
+import StarIcon from "./imdb-star";
 import Autoplay from "embla-carousel-autoplay";
+import { Button } from "./ui/button";
 
 type Movie = {
     original_title: string;
     id: number;
     poster_path: string;
     backdrop_path: string;
+    overview: string;
 };
 
 export const NowPlaying = () => {
@@ -61,14 +63,43 @@ export const NowPlaying = () => {
                                 <CardContent className="flex items-center justify-center p-0 w-full">
                                     <span className="text-4xl font-semibold w-full">
                                         {
-                                            <div className="w-full h-full relative">
-                                                <img
-                                                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                                                    alt={movie.original_title}
-                                                    className="w-full h-[600px] object-cover"
-                                                />
-                                                <div>
-                                                    {movie.original_title}
+                                            <div className="relative">
+                                                <div className="w-full h-full">
+                                                    <img
+                                                        src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                                                        alt={
+                                                            movie.original_title
+                                                        }
+                                                        className="w-full h-[600px] object-cover"
+                                                    />
+                                                    <div className="p-5 space-y-4 lg:p-0 absolute z-10 inset-0">
+                                                        <div className="static text-foreground lg:absolute lg:top-1/2 lg:left-[140px] lg:-translate-y-1/2 lg:text-white z-10">
+                                                            <div className="flex justify-between lg:flex-col lg:space-y-1">
+                                                                <div>
+                                                                    <h4 className="text-sm font-sans">
+                                                                        Now
+                                                                        playing:
+                                                                    </h4>
+                                                                    <h3 className="w-52 text-2xl font-semibold truncate">
+                                                                        {
+                                                                            movie.original_title
+                                                                        }
+                                                                    </h3>
+                                                                </div>
+                                                                <div className="flex items-center gap-x-1">
+                                                                    <StarIcon />
+                                                                </div>
+                                                            </div>
+                                                            <p className="w-[302px] text-sm font-sans line-clamp-5">
+                                                                {movie.overview}
+                                                            </p>
+                                                            <div className="">
+                                                                <Button>
+                                                                   Watch Trailer
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         }
@@ -79,8 +110,8 @@ export const NowPlaying = () => {
                     </CarouselItem>
                 ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-[50px]"/>
-            <CarouselNext className="absolute right-[50px]"/>
+            <CarouselPrevious className="absolute left-[50px]" />
+            <CarouselNext className="absolute right-[50px]" />
         </Carousel>
     );
 };
