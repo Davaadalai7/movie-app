@@ -3,6 +3,7 @@
 import MovieCard from "@/components/movie-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Upcoming from "@/components/upcoming";
 
 import {
   DropdownMenu,
@@ -56,62 +57,8 @@ export function ModeToggle() {
       <div className="flex justify-center mt-[30]">
         <NowPlaying />
       </div>
-      <div className="py-8 lg:py-13 mt-8 lg:space-y-13">
-        <div className="space-y-8">
-          <div className="flex items-center justify-between">
-            <h3 className="text-foreground text-2xl font-semibold">Upcoming</h3>
-            <h4> See more - </h4>
-          </div>
-          <div className="flex flex-wrap gap-5 lg:gap-8 items-center justify-center">
-            <MovieCard
-              title="The Dark Knight"
-              imdbRating={9.0}
-              image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn3.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQkUywIUXDjHSQJIaNHYVs08osgBpF5Ot-xmB_omyEZeeRP9Xug&psig=AOvVaw2JYVAVxPf-ka7tiCbjkNQS&ust=1738056072860000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLjOhcjJlYsDFQAAAAAdAAAAABAE"
-            />
-            <MovieCard
-              title="The Dark Knight"
-              imdbRating={9.0}
-              image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn3.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQkUywIUXDjHSQJIaNHYVs08osgBpF5Ot-xmB_omyEZeeRP9Xug&psig=AOvVaw2JYVAVxPf-ka7tiCbjkNQS&ust=1738056072860000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLjOhcjJlYsDFQAAAAAdAAAAABAE"
-            />
-            <MovieCard
-              title="The Dark Knight"
-              imdbRating={9.0}
-              image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn3.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQkUywIUXDjHSQJIaNHYVs08osgBpF5Ot-xmB_omyEZeeRP9Xug&psig=AOvVaw2JYVAVxPf-ka7tiCbjkNQS&ust=1738056072860000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLjOhcjJlYsDFQAAAAAdAAAAABAE"
-            />
-            <MovieCard
-              title="The Dark Knight"
-              imdbRating={9.0}
-              image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn3.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQkUywIUXDjHSQJIaNHYVs08osgBpF5Ot-xmB_omyEZeeRP9Xug&psig=AOvVaw2JYVAVxPf-ka7tiCbjkNQS&ust=1738056072860000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLjOhcjJlYsDFQAAAAAdAAAAABAE"
-            />
-            <MovieCard
-              title="The Dark Knight"
-              imdbRating={9.0}
-              image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn3.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQkUywIUXDjHSQJIaNHYVs08osgBpF5Ot-xmB_omyEZeeRP9Xug&psig=AOvVaw2JYVAVxPf-ka7tiCbjkNQS&ust=1738056072860000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLjOhcjJlYsDFQAAAAAdAAAAABAE"
-            />
-            <MovieCard
-              title="The Dark Knight"
-              imdbRating={9.0}
-              image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn3.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQkUywIUXDjHSQJIaNHYVs08osgBpF5Ot-xmB_omyEZeeRP9Xug&psig=AOvVaw2JYVAVxPf-ka7tiCbjkNQS&ust=1738056072860000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLjOhcjJlYsDFQAAAAAdAAAAABAE"
-            />
-            <MovieCard
-              title="The Dark Knight"
-              imdbRating={9.0}
-              image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn3.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQkUywIUXDjHSQJIaNHYVs08osgBpF5Ot-xmB_omyEZeeRP9Xug&psig=AOvVaw2JYVAVxPf-ka7tiCbjkNQS&ust=1738056072860000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLjOhcjJlYsDFQAAAAAdAAAAABAE"
-            />
-            <MovieCard
-              title="The Dark Knight"
-              imdbRating={9.0}
-              image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn3.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQkUywIUXDjHSQJIaNHYVs08osgBpF5Ot-xmB_omyEZeeRP9Xug&psig=AOvVaw2JYVAVxPf-ka7tiCbjkNQS&ust=1738056072860000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLjOhcjJlYsDFQAAAAAdAAAAABAE"
-            />
-            <MovieCard
-              title="The Dark Knight"
-              imdbRating={9.0}
-              image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn3.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQkUywIUXDjHSQJIaNHYVs08osgBpF5Ot-xmB_omyEZeeRP9Xug&psig=AOvVaw2JYVAVxPf-ka7tiCbjkNQS&ust=1738056072860000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLjOhcjJlYsDFQAAAAAdAAAAABAE"
-            />
-            
-          </div>
-        </div>
-      </div>
+      <Upcoming/>
+   
     </div>
   );
 }
