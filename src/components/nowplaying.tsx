@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import StarIcon from "./imdb-star";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "./ui/button";
+import StarBig from "./imdb-star-big";
 
 type Movie = {
   original_title: string;
@@ -82,7 +83,15 @@ export const NowPlaying = () => {
                                   </h3>
                                 </div>
                                 <div className="flex items-center gap-x-1">
-                                  <StarIcon />
+                                  <StarBig/>
+                                  <p>
+                                    <span className="text-foreground text-sm">
+                                      {parseFloat(movie.vote_average.toFixed(1))}
+                                    </span>
+                                    <span className="text-muted-foreground text-xs">
+                                      /10
+                                    </span>
+                                  </p>
                                 </div>
                               </div>
                               <p className="w-[302px] text-sm font-sans line-clamp-5">

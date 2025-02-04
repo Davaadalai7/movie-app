@@ -1,28 +1,37 @@
 "use client";
-
 import { useEffect, useState } from "react";
-import StarIcon from "./imdb-star";
-import Link from "next/link";
+import StarIcon from "@/components/imdb-star";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 type Movie = {
   id: number;
   original_title: string;
   poster_path: string;
   vote_average: number;
-};
+}
+
 type ApiResponse = {
   results: Movie[];
-};
-const apiKey = "api_key=db430a8098715f8fab36009f57dff9fb";
-const baseUrl = "https://api.themoviedb.org/3";
-const tobot = `${baseUrl}/movie/upcoming?language=en-US&page=1&${apiKey}`;
+}
 
-const Upcoming = () => {
+const UpcomingPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const apiKey = "api_key=db430a8098715f8fab36009f57dff9fb";
+  const baseUrl = "https://api.themoviedb.org/3";
+  const tobot = `${baseUrl}/movie/upcoming?language=en-US&page=${currentPage}&${apiKey}`;
 
   const getUpcomingMovies = async () => {
     try {
-      // axios
       const response = await fetch(tobot);
       const result: ApiResponse = await response.json();
       setMovies(result.results);
@@ -33,23 +42,27 @@ const Upcoming = () => {
 
   useEffect(() => {
     getUpcomingMovies();
-  }, []);
+  }, [currentPage]);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => (prevPage > 1 ? prevPage - 1 : 1));
+  };
 
   return (
     <div className="py-8 lg:py-13 mt-8 lg:space-y-13">
       <div className="space-y-8 mx-auto w-full max-w-[1100px]">
-        <div className="flex items-center justify-between">
-          <h3 className="text-foreground text-2xl font-semibold">Upcoming</h3>
-          <Link href="/category/upcoming/" className="text-blue-500">
-            See More...
-          </Link>
-        </div>
-
+        <h3 className="text-foreground text-2xl font-semibold">
+          Upcoming Movies
+        </h3>
         <div className="grid grid-cols-3 md:grid-cols-5 gap-5 lg:gap-8 items-center justify-center p-4 md:p-0">
-          {movies.slice(0, 10).map((movie) => (
+          {movies.map((movie) => (
             <div
               key={movie.id}
-              className="group overflow-hidden rounded-lg bg-secondary space-y-1"
+              className="group w-full overflow-hidden rounded-lg bg-secondary space-y-1"
             >
               <div>
                 <img
@@ -63,7 +76,6 @@ const Upcoming = () => {
                   <div className="font-medium">
                     <p>
                       <span className="text-foreground text-sm">
-                        {" "}
                         {parseFloat(movie.vote_average.toFixed(1))}
                       </span>
                       <span className="text-muted-foreground text-xs">/10</span>
@@ -77,9 +89,29 @@ const Upcoming = () => {
             </div>
           ))}
         </div>
+        <div className="mx-auto w-full flex justify-end">
+          <div className="flex flex-row items-center gap-1  ">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious href="#" onClick={handlePreviousPage} />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink href="#">{currentPage}</PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationNext href="#" onClick={handleNextPage} />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Upcoming;
+export default UpcomingPage;

@@ -66,7 +66,6 @@ export function ModeToggle() {
 export default function Home() {
   return (
     <div>
-      {/* Other components like Carousel or MovieCard can go here */}
       <ModeToggle />
     </div>
   );
