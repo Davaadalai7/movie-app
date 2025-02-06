@@ -15,6 +15,7 @@ import Logo from "@/components/ui/movielogo";
 import { Select } from "@/components/ui/select";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -22,9 +23,9 @@ export const Header = () => {
   return (
     <div className="flex justify-center w-full">
       <div className="flex justify-between w-[1280px] max-w-[1280px] h-[60px] items-center">
-        <div>
+        <Link href={"/"}>
           <Logo />
-        </div>
+        </Link>
         <div>
           <Select />
           <Input />

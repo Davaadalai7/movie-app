@@ -1,38 +1,33 @@
 "use client";
 
-import MovieCard from "@/components/movie-card";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import Upcoming from "@/components/upcoming";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import Logo from "@/components/ui/movielogo";
-import { Select } from "@/components/ui/select";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import React from "react";
 import NowPlaying from "@/components/nowplaying";
 import { Header } from "@/components/header";
+import Popular from "@/components/popular";
+import TopRated from "@/components/top-rated";
+import Footer from "@/components/footer";
 
 export function ModeToggle() {
   const { setTheme } = useTheme();
 
   return (
     <div className="bg-white dark:bg-black">
-   <div>
-      <Header/>
-   </div>
-      <div className="flex justify-center mt-[30]">
+      <div className="sticky top-0 z-10 bg-white dark:bg-black">
+        <Header />
+      </div>
+      <div className="flex justify-center">
         <NowPlaying />
       </div>
-      <Upcoming/>
-   
+      <div>
+        <Upcoming />
+        <Popular />
+        <TopRated />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

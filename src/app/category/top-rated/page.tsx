@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import StarIcon from "@/components/imdb-star";
 import {
@@ -23,13 +24,13 @@ type ApiResponse = {
   results: Movie[];
 }
 
-const UpcomingPage = () => {
+const TopRatedPage = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   const apiKey = "api_key=db430a8098715f8fab36009f57dff9fb";
   const baseUrl = "https://api.themoviedb.org/3";
-  const tobot = `${baseUrl}/movie/upcoming?language=en-US&page=${currentPage}&${apiKey}`;
+  const tobot = `${baseUrl}/movie/top_rated?language=en-US&page=${currentPage}&${apiKey}`;
 
   const getUpcomingMovies = async () => {
     try {
@@ -59,7 +60,7 @@ const UpcomingPage = () => {
     <div className="py-8 lg:py-13 mt-8 lg:space-y-13">
       <div className="space-y-8 mx-auto w-full max-w-[1100px]">
         <h3 className="text-foreground text-2xl font-semibold">
-          Upcoming Movies
+          Top Rated Movies
         </h3>
         <div className="grid grid-cols-3 md:grid-cols-5 gap-5 lg:gap-8 items-center justify-center p-4 md:p-0">
           {movies.map((movie) => (
@@ -118,4 +119,4 @@ const UpcomingPage = () => {
   );
 };
 
-export default UpcomingPage;
+export default TopRatedPage;
