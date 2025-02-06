@@ -3,14 +3,13 @@
 import { useEffect, useState } from "react";
 import StarIcon from "./imdb-star";
 import Link from "next/link";
-import { Header } from "@/components/header";
 
-type Movie = {
-  id: number;
-  original_title: string;
-  poster_path: string;
-  vote_average: number;
-};
+  type Movie = {
+    id: number;
+    original_title: string;
+    poster_path: string;
+    vote_average: number;
+  };
 type ApiResponse = {
   results: Movie[];
 };

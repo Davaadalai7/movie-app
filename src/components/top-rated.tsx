@@ -63,7 +63,6 @@ const TopRated = () => {
                   <div className="font-medium">
                     <p>
                       <span className="text-foreground text-sm">
-                        {" "}
                         {parseFloat(movie.vote_average.toFixed(1))}
                       </span>
                       <span className="text-muted-foreground text-xs">/10</span>

@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import StarIcon from "@/components/imdb-star";
 import {
