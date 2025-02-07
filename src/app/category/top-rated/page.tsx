@@ -12,6 +12,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Header } from "@/components/header";
+import Footer from "@/components/footer";
 
 type Movie = {
   id: number;
@@ -115,6 +116,7 @@ const TopRatedPage = () => {
         </div>
       </div>
     </div>
+    <Footer />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent } from "./ui/card";
 import {
   Carousel,
@@ -7,10 +9,19 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import React, { useEffect, useState } from "react";
-import StarIcon from "./imdb-star";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "./ui/button";
 import StarBig from "./imdb-star-big";
+import PlayIcon from "./ui/play-icon";
+import ReactPlayer from "react-player";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 type Movie = {
   original_title: string;
@@ -23,11 +34,13 @@ type Movie = {
 
 export const NowPlaying = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [movieId, setMovieId] = useState("");
+  const [movieTrailer, setMovieTrailer] = useState([]);
 
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
-
+  
   const apiKey = "api_key=db430a8098715f8fab36009f57dff9fb";
   const baseUrl = "https://api.themoviedb.org/3";
   const mainUrl =
@@ -38,16 +51,40 @@ export const NowPlaying = () => {
       const response = await fetch(mainUrl);
       const result = await response.json();
       const movies = result.results;
+      console.log(movies);
+
       setMovies(movies);
     } catch (error) {
       console.log(error);
     }
   };
-
+  1;
   useEffect(() => {
     getMovies();
   }, []);
 
+  const getMovieId = (el) => {
+    setMovieId(el);
+  };
+
+  useEffect(() => {
+    const getMovieTrailer = async () => {
+      const trailerUrl = `${baseUrl}/movie/${movieId}/videos?language=en-US&${apiKey}`;
+      try {
+        const response = await fetch(trailerUrl);
+        const result = await response.json();
+        const trailer = result.results.find(
+          (video: any) => video.type === "Trailer" && video.site === "YouTube"
+        );
+        const realTrailerUrl = `https://www.youtube.com/watch?v=${trailer.key}`;
+        setMovieTrailer(realTrailerUrl);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMovieTrailer();
+  }, [movieId]);
+  console.log(movieTrailer);
   // console.log(movies);
 
   return (
@@ -84,10 +121,12 @@ export const NowPlaying = () => {
                                   </h3>
                                 </div>
                                 <div className="flex items-center gap-x-1">
-                                  <StarBig/>
+                                  <StarBig />
                                   <p>
                                     <span className="text-foreground text-sm">
-                                      {parseFloat(movie.vote_average.toFixed(1))}
+                                      {parseFloat(
+                                        movie?.vote_average?.toFixed(1)
+                                      )}
                                     </span>
                                     <span className="text-muted-foreground text-xs">
                                       /10
@@ -99,7 +138,23 @@ export const NowPlaying = () => {
                                 {movie.overview}
                               </p>
                               <div className="">
-                                <Button>Watch Trailer</Button>
+                                <Dialog>
+                                  <DialogTrigger>
+                                  <Button className="flex mt-5 font-bold gap-2" onClick={()=>getMovieId(movie.id)}>
+                                      <PlayIcon />
+                                      <p>Watch Trailer</p>
+                                      </Button>
+                                  </DialogTrigger>
+                                  <DialogContent>
+                                    <DialogHeader>
+                                      <DialogTitle>
+                                      </DialogTitle>
+                                      <DialogDescription>
+                                      </DialogDescription>
+                                    </DialogHeader>
+                                    <ReactPlayer url={movieTrailer} />
+                                  </DialogContent>
+                                </Dialog>
                               </div>
                             </div>
                           </div>
