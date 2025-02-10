@@ -40,7 +40,7 @@ export const NowPlaying = () => {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
-  
+
   const apiKey = "api_key=db430a8098715f8fab36009f57dff9fb";
   const baseUrl = "https://api.themoviedb.org/3";
   const mainUrl =
@@ -140,17 +140,21 @@ export const NowPlaying = () => {
                               <div className="">
                                 <Dialog>
                                   <DialogTrigger>
-                                  <Button className="flex mt-5 font-bold gap-2" onClick={()=>getMovieId(movie.id)}>
-                                      <PlayIcon />
-                                      <p>Watch Trailer</p>
-                                      </Button>
+                                    <div>
+                                      {" "}
+                                      <div
+                                        className="flex mt-5 font-bold gap-2"
+                                        onClick={() => getMovieId(movie.id)}
+                                      >
+                                        <PlayIcon />
+                                        <p>Watch Trailer</p>
+                                      </div>
+                                    </div>
                                   </DialogTrigger>
-                                  <DialogContent>
+                                  <DialogContent className="w-fit max-w-fit">
                                     <DialogHeader>
-                                      <DialogTitle>
-                                      </DialogTitle>
-                                      <DialogDescription>
-                                      </DialogDescription>
+                                      <DialogTitle></DialogTitle>
+                                      <DialogDescription></DialogDescription>
                                     </DialogHeader>
                                     <ReactPlayer url={movieTrailer} />
                                   </DialogContent>
