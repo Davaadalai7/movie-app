@@ -13,6 +13,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { Button } from "./ui/button";
 import StarBig from "./imdb-star-big";
 import PlayIcon from "./ui/play-icon";
+import { Play } from "lucide-react";
 import ReactPlayer from "react-player";
 import {
   Dialog,
@@ -22,6 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+// import { Play } from "next/font/google";
 
 type Movie = {
   original_title: string;
@@ -123,7 +125,7 @@ export const NowPlaying = () => {
                                 <div className="flex items-center gap-x-1">
                                   <StarBig />
                                   <p>
-                                    <span className="text-foreground text-sm">
+                                    <span className="text-foreground text-white text-sm">
                                       {parseFloat(
                                         movie?.vote_average?.toFixed(1)
                                       )}
@@ -141,13 +143,12 @@ export const NowPlaying = () => {
                                 <Dialog>
                                   <DialogTrigger>
                                     <div>
-                                      {" "}
                                       <div
-                                        className="flex mt-5 font-bold gap-2"
+                                        className="flex items-center justify-center text-sm py-2 mt-5 gap-2 px-4 py-1 text-secondary-foreground bg-secondary font-medium rounded-md shadow-md hover:bg-secondary/80 cursor-pointer"
                                         onClick={() => getMovieId(movie.id)}
                                       >
-                                        <PlayIcon />
-                                        <p>Watch Trailer</p>
+                                        <Play className="w-4 h-4"/>
+                                        Watch Trailer
                                       </div>
                                     </div>
                                   </DialogTrigger>

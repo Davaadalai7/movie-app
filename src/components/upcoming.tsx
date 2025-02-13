@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import StarIcon from "./imdb-star";
 import Link from "next/link";
 
-  type Movie = {
-    id: number;
-    original_title: string;
-    poster_path: string;
-    vote_average: number;
-  };
+type Movie = {
+  id: number;
+  original_title: string;
+  poster_path: string;
+  vote_average: number;
+};
 type ApiResponse = {
   results: Movie[];
 };
@@ -47,34 +47,35 @@ const Upcoming = () => {
 
         <div className="grid grid-cols-3 md:grid-cols-5 gap-5 lg:gap-8 items-center justify-center p-4 md:p-0">
           {movies.slice(0, 10).map((movie) => (
-            <div
-              key={movie.id}
-              className="group overflow-hidden rounded-lg bg-secondary space-y-1"
-            >
-              <div>
-                <img
-                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                  alt={movie.original_title}
-                />
-              </div>
-              <div className="p-2">
-                <div className="flex items-center gap-x-1">
-                  <StarIcon />
-                  <div className="font-medium">
-                    <p>
-                      <span className="text-foreground text-sm">
-                        {" "}
-                        {parseFloat(movie.vote_average.toFixed(1))}
-                      </span>
-                      <span className="text-muted-foreground text-xs">/10</span>
-                    </p>
-                  </div>
+            <Link href={`/details/${movie.id}`} key={movie.id}>
+              <div className="group overflow-hidden rounded-lg bg-secondary space-y-1">
+                <div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                    alt={movie.original_title}
+                  />
                 </div>
-                <h1 className="h-14 overflow-hidden text-elipsis line-clamp-2 text-lg text-foreground">
-                  {movie.original_title}
-                </h1>
+                <div className="p-2">
+                  <div className="flex items-center gap-x-1">
+                    <StarIcon />
+                    <div className="font-medium">
+                      <p>
+                        <span className="text-foreground text-sm">
+                          {" "}
+                          {parseFloat(movie.vote_average.toFixed(1))}
+                        </span>
+                        <span className="text-muted-foreground text-xs">
+                          /10
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  <h1 className="h-14 overflow-hidden text-elipsis line-clamp-2 text-lg text-foreground">
+                    {movie.original_title}
+                  </h1>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

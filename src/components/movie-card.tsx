@@ -1,7 +1,7 @@
 import StarIcon from "./imdb-star";
 import React, { useEffect, useState } from "react";
 
-interface MovieCardProps {
+type MovieCardProps = {
   title: string;
   imdbRating: number;
   image: string;
