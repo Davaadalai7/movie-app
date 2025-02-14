@@ -6,7 +6,8 @@ import ReactPlayer from "react-player";
 import Footer from "@/components/footer";
 import { Header } from "@/components/header";
 import StarBig from "@/components/imdb-star-big";
-import { Play } from "lucide-react";
+import { Play, X } from "lucide-react";
+import SimilarMovie from "@/components/similiar";
 
 type Genre = {
   id: number;
@@ -28,8 +29,11 @@ type MovieDetail = {
 
 const Detail = () => {
   const { id } = useParams();
+  console.log(id);
+  
   const [movie, setMovie] = useState<MovieDetail | null>(null);
   const [trailerUrl, setTrailerUrl] = useState<string | null>(null); // Store trailer URL
+  const [trailerDuration, setTrailerDuration] = useState<number | null>(null); // Store trailer duration
   const [isDialogOpen, setIsDialogOpen] = useState(false); // For handling dialog state
 
   const apiKey = "db430a8098715f8fab36009f57dff9fb";
@@ -57,6 +61,7 @@ const Detail = () => {
         );
         if (trailer) {
           setTrailerUrl(`https://www.youtube.com/watch?v=${trailer.key}`);
+          setTrailerDuration(120);
         }
       }
     };
@@ -67,6 +72,13 @@ const Detail = () => {
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
     return `${hours}h ${remainingMinutes}m`;
+  };
+
+  const formatDuration = (seconds: number | null) => {
+    if (seconds === null) return "N/A";
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}m ${remainingSeconds}s`;
   };
 
   const openDialog = () => setIsDialogOpen(true);
@@ -94,9 +106,9 @@ const Detail = () => {
           <div className="text-xs">
             <h5 className="hidden lg:block">Rating</h5>
             <div className="flex items-center py-[2px] gap-x-1">
-              <StarBig />
+              <StarBig/>
               <div className="">
-                <span className="text-foreground text-white text-sm">
+                <span className="text-foreground text-black text-sm dark:text-white">
                   {parseFloat(movie?.vote_average?.toFixed(1))}
                 </span>
                 <span className="text-muted-foreground text-xs">/10</span>
@@ -122,13 +134,21 @@ const Detail = () => {
             />
 
             {/* Play Button */}
-            <button
-              className="absolute left-5 bottom-5 lg:left-8 lg:bottom-8 p-4 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:bg-primary-dark transition-all"
-              onClick={openDialog}
-              aria-label="Play Trailer"
-            >
-              <Play className="w-4 h-4 dark: fill-black text-white" />
-            </button>
+            <div className="absolute left-5 bottom-5 lg:left-8 lg:bottom-8 flex items-center gap-4">
+              <button
+                className="p-4 bg-primary text-white rounded-full flex items-center justify-center shadow-lg hover:bg-primary-dark transition-all"
+                onClick={openDialog}
+                aria-label="Play Trailer"
+              >
+                <Play className="w-4 h-4 dark: fill-black text-white" />
+              </button>
+              {/* Text and Trailer Duration */}
+              {trailerDuration !== null && (
+                <span className="text-white text-sm">
+                  {`Trailer Duration: ${formatDuration(trailerDuration)}`}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
@@ -162,7 +182,7 @@ const Detail = () => {
                   height="50vh"
                 />
                 <button
-                  className="absolute right-2 top-1 text-3xl"
+                  className="absolute right-2 top-1 text-3xl text-white"
                   onClick={closeDialog}
                 >
                   &times;
@@ -172,6 +192,7 @@ const Detail = () => {
           </div>
         )}
       </div>
+      <SimilarMovie id={id as string}/>
       <Footer />
     </div>
   );
